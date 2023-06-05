@@ -7,6 +7,8 @@ public class Game {
     
     public static void main(String[] args) throws Exception {
         GameFrame game = new GameFrame();
+        Battleship sg = new Battleship();
+        sg.shipGenerator();
         Board b;
         b = new Board();
        // b.newBoard();

@@ -1,5 +1,6 @@
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.Arrays;
 
 public class Board extends JPanel {
     //vars
@@ -58,17 +59,28 @@ public class Board extends JPanel {
     public void draw(Graphics g){
 
         Graphics panelGrid = g.create();
+        String[] ships = Battleship.ships;
+
         for(int i = 0; i < gameGrid.length;i++){
             panelGrid.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, BOARD_HEIGHT - UNIT_SIZE);
             panelGrid.drawLine(0, i*UNIT_SIZE, BOARD_WIDTH - UNIT_SIZE, i*UNIT_SIZE);               
         }
 
-        for(int i=0;i< gameGrid.length ;i++){
-            for(int j=0;j< gameGrid.length;j++){
-                    panelGrid.setColor(Color.black);        
-                    panelGrid.fillRect(5*UNIT_SIZE, 5*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); 
-            }
-        }   
+        for(int i=0;i< ships.length;i++){
+            //ships[i] = Integer.toString(i);
+            for(int j=0;j< ships[i].length();j++){
+                //System.out.print(ships[0].charAt(0) + "uuu");
+                    x =  Character.getNumericValue(ships[i].charAt(1));
+                    y =  Character.getNumericValue(ships[i].charAt(4));
+              // System.out.print( ships[i].charAt(4) + "aaa ");
+              //System.out.print( y + "ee ");
+              panelGrid.setColor(Color.black);        
+              panelGrid.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); 
+           }
+        }
+        
+  
+
     }
 
 
