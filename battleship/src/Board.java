@@ -5,7 +5,10 @@ public class Board extends JPanel {
     //vars
     int BOARD_WIDTH;
     int BOARD_HEIGHT;
+    int x;
+    int y;
     String grid [][];
+    Integer gameGrid [][];
     int UNIT_SIZE;
 
     //constructor
@@ -14,31 +17,32 @@ public class Board extends JPanel {
         BOARD_WIDTH = 200;
         BOARD_HEIGHT = 200;
         grid = new String[10][10];
+        gameGrid = new Integer[10][10];
         this.setSize(BOARD_WIDTH, BOARD_HEIGHT);
         //this.setBackground(Color.black);
         
     };
 
-    // public String[][] newBoard(){
-    //     for(int i=0;i< grid.length;i++){
-    //         for(int j=0;j< grid.length;j++){
-    //             if(grid[i][j] == grid[0][0]){
-    //                 grid[i][j] = " ";
-    //             }
-    //             else if(grid[i][j] == grid[i][0]){
-    //                 grid[i][j] = Integer.toString(i);
-    //             }else if(grid[i][j] == grid[0][j] ){
-    //                 grid[i][j] = Integer.toString(j);
-    //             }else{
-    //                 grid[i][j] = "0";
-    //             }
-    //             System.out.print(grid[i][j]) ; 
-    //             System.out.print(" ") ; 
-    //         }
-    //         System.out.println(" ") ; 
-    //     }
-    //  return grid;
-    // };
+    public String[][] newBoard(){
+        for(int i=0;i< grid.length;i++){
+            for(int j=0;j< grid.length;j++){
+                if(grid[i][j] == grid[0][0]){
+                    grid[i][j] = " ";
+                }
+                else if(grid[i][j] == grid[i][0]){
+                    grid[i][j] = Integer.toString(i);
+                }else if(grid[i][j] == grid[0][j] ){
+                    grid[i][j] = Integer.toString(j);
+                }else{
+                    grid[i][j] = "0";
+                }
+                System.out.print(grid[i][j]) ; 
+                System.out.print(" ") ; 
+            }
+            System.out.println(" ") ; 
+        }
+     return grid;
+    };
 
     
     public void paintComponent(Graphics g){
@@ -54,12 +58,46 @@ public class Board extends JPanel {
     public void draw(Graphics g){
 
         Graphics panelGrid = g.create();
-        for(int i = 0; i < grid.length;i++){
+        for(int i = 0; i < gameGrid.length;i++){
             panelGrid.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, BOARD_HEIGHT - UNIT_SIZE);
-            panelGrid.drawLine(0, i*UNIT_SIZE, BOARD_WIDTH - UNIT_SIZE, i*UNIT_SIZE);
-              
+            panelGrid.drawLine(0, i*UNIT_SIZE, BOARD_WIDTH - UNIT_SIZE, i*UNIT_SIZE);               
         }
-   
+
+        for(int i=0;i< gameGrid.length ;i++){
+            for(int j=0;j< gameGrid.length;j++){
+                    panelGrid.setColor(Color.black);        
+                    panelGrid.fillRect(5*UNIT_SIZE, 5*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); 
+            }
+        }   
     }
 
+
+    public void updateBoardTest(String player, int x, int y){
+        if(player == "puta"){
+            for(int i=0;i< grid.length;i++){
+                for(int j=0;j< grid.length;j++){
+                       grid[i][j] =  Integer.toString(j);
+                    if(grid[i][j] == grid[x][y]) {        
+                        grid[i][j] = "W";
+                    }else if(grid[i][j] == grid[0][0]){
+                        grid[i][j] = " ";
+                    }
+                    else if(grid[i][j] == grid[i][0]){
+                        grid[i][j] = Integer.toString(i);
+                    }else if(grid[i][j] == grid[0][j] ){
+                        grid[i][j] = Integer.toString(j);
+                    }else{
+                        grid[i][j] = "-";
+                    }
+                    System.out.print(grid[i][j]) ; 
+                    System.out.print(" ") ; 
+                //}
+                    
+                }
+                System.out.println(" ") ; 
+                 
+           }
+   }
+
+    }
 }
