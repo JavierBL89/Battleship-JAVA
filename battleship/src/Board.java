@@ -9,21 +9,26 @@ public class Board extends JPanel {
     int x;
     int y;
     String grid [][];
+    String playerName;
     Integer gameGrid [][];
     int UNIT_SIZE;
 
     //constructor
-    Board(){
+    Board(String playerName){
         UNIT_SIZE = 20;
         BOARD_WIDTH = 200;
         BOARD_HEIGHT = 200;
         grid = new String[10][10];
         gameGrid = new Integer[10][10];
+        this.playerName = playerName;
         this.setSize(BOARD_WIDTH, BOARD_HEIGHT);
         //this.setBackground(Color.black);
         
     };
 
+    /**
+    * Method helped me to build the game with a grid printed on the cosole
+     */
     public String[][] newBoard(){
         for(int i=0;i< grid.length;i++){
             for(int j=0;j< grid.length;j++){
@@ -59,31 +64,48 @@ public class Board extends JPanel {
     public void draw(Graphics g){
 
         Graphics panelGrid = g.create();
-        String[] ships = Battleship.ships;
-
+        // Grab the player ships arrays from the Battleship class to draw them
+        String[] compuShips = Battleship.compuShips;
+        String[] playerShips = Battleship.playerShips;
+        
+        // Draws a grid for both boards(panels)
         for(int i = 0; i < gameGrid.length;i++){
-            panelGrid.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, BOARD_HEIGHT - UNIT_SIZE);
-            panelGrid.drawLine(0, i*UNIT_SIZE, BOARD_WIDTH - UNIT_SIZE, i*UNIT_SIZE);               
-        }
-
-        for(int i=0;i< ships.length;i++){
-            //ships[i] = Integer.toString(i);
-            for(int j=0;j< ships[i].length();j++){
-                //System.out.print(ships[0].charAt(0) + "uuu");
-                    x =  Character.getNumericValue(ships[i].charAt(1));
-                    y =  Character.getNumericValue(ships[i].charAt(4));
-              // System.out.print( ships[i].charAt(4) + "aaa ");
-              //System.out.print( y + "ee ");
-              panelGrid.setColor(Color.black);        
-              panelGrid.fillRect(x*UNIT_SIZE, y*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); 
-           }
+            panelGrid.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, BOARD_HEIGHT );
+            panelGrid.drawLine(0, i*UNIT_SIZE, BOARD_WIDTH , i*UNIT_SIZE);               
         }
         
+        // Draw player's boards with their ships
+        if(this.playerName == "Compu"){
+            for(int i=0;i< compuShips.length ;i++){
+                for(int j=0;j< compuShips[i].length();j++){
+                    x =  Character.getNumericValue(compuShips[i].charAt(1));
+                    y =  Character.getNumericValue(compuShips[i].charAt(4));
+                   // System.out.println(x + " " + y);
+
+                   panelGrid.setColor(Color.black);        
+                   panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+              
+               }
+            }
+        }else if(this.playerName == "Player"){
+                for(int i=0;i< playerShips.length ;i++){
+                    for(int j=0;j< playerShips[i].length();j++){
+                        x =  Character.getNumericValue(playerShips[i].charAt(1));
+                        y =  Character.getNumericValue(playerShips[i].charAt(4));
+                       // System.out.println(x + " " + y);
+    
+                        panelGrid.setColor(Color.black);        
+                        panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+                   }
+                }
+    }
   
 
     }
 
-
+   /**
+    * Method helped me to build the game with a grid printed on the cosole
+    */
     public void updateBoardTest(String player, int x, int y){
         if(player == "puta"){
             for(int i=0;i< grid.length;i++){

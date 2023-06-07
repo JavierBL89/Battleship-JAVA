@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.Container;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 public class GameFrame extends JFrame{
     //vars 
@@ -24,16 +26,18 @@ public class GameFrame extends JFrame{
         // Container playerContainer = getContentPane();
 
         // Create boards
-        compuBoard = new Board();
-        playerBoard  = new Board();
+        compuBoard = new Board("Compu");
+        playerBoard  = new Board("Player");
 
         // Board attributes
         compuBoard.setLayout(null);
         playerBoard.setLayout(null);
+        playerBoard.setBorder(BorderFactory.createLineBorder(Color.black));
+        compuBoard.setBorder(BorderFactory.createLineBorder(Color.black));
         playerBoard.setBackground(Color.yellow);
         compuBoard.setBackground(Color.red);
-        playerBoard.setBounds(400, 100, 181, 181);
-        compuBoard.setBounds(200, 100, 181, 181);
+        playerBoard.setBounds(410, 100, 201, 200);
+        compuBoard.setBounds(190, 100, 201, 200);
        // compuBoard.setBounds(400, 100, 181, 181);
 
         // Player Board label
