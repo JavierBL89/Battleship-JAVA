@@ -1,3 +1,4 @@
+
 import javax.swing.JPanel;
 import java.awt.*;
 import java.util.Arrays;
@@ -65,39 +66,56 @@ public class Board extends JPanel {
 
         Graphics panelGrid = g.create();
         // Grab the player ships arrays from the Battleship class to draw them
-        String[] compuShips = Battleship.compuShips;
-        String[] playerShips = Battleship.playerShips;
+        String[][] compuShips = Battleship.compuShips;
+        String[][] playerShips = Battleship.playerShips;
         
         // Draws a grid for both boards(panels)
         for(int i = 0; i < gameGrid.length;i++){
             panelGrid.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, BOARD_HEIGHT );
             panelGrid.drawLine(0, i*UNIT_SIZE, BOARD_WIDTH , i*UNIT_SIZE);               
         }
-        
         // Draw player's boards with their ships
         if(this.playerName == "Compu"){
-            for(int i=0;i< compuShips.length ;i++){
-                for(int j=0;j< compuShips[i].length();j++){
-                    x =  Character.getNumericValue(compuShips[i].charAt(1));
-                    y =  Character.getNumericValue(compuShips[i].charAt(4));
-                   // System.out.println(x + " " + y);
+// shipsArray [
+//              i[ j[ k[] k[] ]  ]
+//              i[ j[ k[] k[] ]  ]
+//              i[ j[ k[] k[] ]  ]
+//             ]
+            for(int i=0;i< compuShips.length;i++){
+                System.out.println("ARRAY LENGTH " + (compuShips.length) );
+                System.out.println("BOATS " + (Arrays.toString(compuShips[i])) );
+
+                 for(int j=0;j< compuShips[i].length;j++){
+                   // System.out.println("JJ" + compuShips[j].length);
+                   for(int k=0;k< compuShips[i].length;k++){
+                   // System.out.println(Arrays.toString(compuShips[k]) + " jj");
+                    // System.out.println(compuShips[j][k].charAt(1) + " jj");
+                    x =  Character.getNumericValue(compuShips[i][k].charAt(1));
+                    y =  Character.getNumericValue(compuShips[i][k].charAt(4));
 
                    panelGrid.setColor(Color.black);        
                    panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
-              
                }
+              }
             }
         }else if(this.playerName == "Player"){
-                for(int i=0;i< playerShips.length ;i++){
-                    for(int j=0;j< playerShips[i].length();j++){
-                        x =  Character.getNumericValue(playerShips[i].charAt(1));
-                        y =  Character.getNumericValue(playerShips[i].charAt(4));
-                       // System.out.println(x + " " + y);
-    
-                        panelGrid.setColor(Color.black);        
-                        panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
-                   }
-                }
+               for(int i=0;i< playerShips.length;i++){
+                System.out.println("ARRAY LENGTH " + (playerShips.length) );
+                System.out.println("BOATS " + (Arrays.toString(playerShips[i])) );
+
+                 for(int j=0;j< playerShips[i].length;j++){
+                   // System.out.println("JJ" + compuShips[j].length);
+                   for(int k=0;k< playerShips[i].length;k++){
+                   // System.out.println(Arrays.toString(compuShips[k]) + " jj");
+                    // System.out.println(compuShips[j][k].charAt(1) + " jj");
+                    x =  Character.getNumericValue(playerShips[i][k].charAt(1));
+                    y =  Character.getNumericValue(playerShips[i][k].charAt(4));
+
+                   panelGrid.setColor(Color.black);        
+                   panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+               }
+              }
+            }
     }
   
 

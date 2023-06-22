@@ -41,14 +41,14 @@ public class GameFrame extends JFrame{
        // compuBoard.setBounds(400, 100, 181, 181);
 
         // Player Board label
-        JLabel playerLabel = new JLabel("PUTO");
-        playerLabel.setBounds(100, 30, 80, 30);
-        playerBoard.setBackground(Color.yellow);
-        playerBoard.add(playerLabel);
+        // JLabel playerLabel = new JLabel("PUTO");
+        // playerLabel.setBounds(100, 30, 80, 30);
+        // playerBoard.setBackground(Color.yellow);
+        // playerBoard.add(playerLabel);
 
 
         // Computer Board label
-       JLabel compuLabel =new JLabel("Sayonara");
+       JLabel compuLabel =new JLabel("Compu");
        compuLabel.setBounds(100, 30, 80, 30);
        compuBoard.add(compuLabel);
 
