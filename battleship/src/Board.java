@@ -24,34 +24,8 @@ public class Board extends JPanel {
         this.playerName = playerName;
         this.setSize(BOARD_WIDTH, BOARD_HEIGHT);
         //this.setBackground(Color.black);
-        
     };
 
-    /**
-    * Method helped me to build the game with a grid printed on the cosole
-     */
-    public String[][] newBoard(){
-        for(int i=0;i< grid.length;i++){
-            for(int j=0;j< grid.length;j++){
-                if(grid[i][j] == grid[0][0]){
-                    grid[i][j] = " ";
-                }
-                else if(grid[i][j] == grid[i][0]){
-                    grid[i][j] = Integer.toString(i);
-                }else if(grid[i][j] == grid[0][j] ){
-                    grid[i][j] = Integer.toString(j);
-                }else{
-                    grid[i][j] = "0";
-                }
-                System.out.print(grid[i][j]) ; 
-                System.out.print(" ") ; 
-            }
-            System.out.println(" ") ; 
-        }
-     return grid;
-    };
-
-    
     public void paintComponent(Graphics g){
         // This method will apply to the panel the settings we set before Color, size, fonts..
         super.paintComponent(g);
@@ -82,74 +56,27 @@ public class Board extends JPanel {
 //              i[ j[ k[] k[] ]  ]
 //             ]
             for(int i=0;i< compuShips.length;i++){
-                System.out.println("ARRAY LENGTH " + (compuShips.length) );
-                System.out.println("BOATS " + (Arrays.toString(compuShips[i])) );
-
                  for(int j=0;j< compuShips[i].length;j++){
-                   // System.out.println("JJ" + compuShips[j].length);
                    for(int k=0;k< compuShips[i].length;k++){
-                   // System.out.println(Arrays.toString(compuShips[k]) + " jj");
-                    // System.out.println(compuShips[j][k].charAt(1) + " jj");
-                    x =  Character.getNumericValue(compuShips[i][k].charAt(1));
-                    y =  Character.getNumericValue(compuShips[i][k].charAt(4));
-
-                   panelGrid.setColor(Color.black);        
-                   panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+                       x =  Character.getNumericValue(compuShips[i][k].charAt(1));
+                       y =  Character.getNumericValue(compuShips[i][k].charAt(4));
+                      panelGrid.setColor(Color.black);        
+                      panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
                }
               }
             }
         }else if(this.playerName == "Player"){
                for(int i=0;i< playerShips.length;i++){
-                System.out.println("ARRAY LENGTH " + (playerShips.length) );
-                System.out.println("BOATS " + (Arrays.toString(playerShips[i])) );
-
                  for(int j=0;j< playerShips[i].length;j++){
-                   // System.out.println("JJ" + compuShips[j].length);
                    for(int k=0;k< playerShips[i].length;k++){
-                   // System.out.println(Arrays.toString(compuShips[k]) + " jj");
-                    // System.out.println(compuShips[j][k].charAt(1) + " jj");
                     x =  Character.getNumericValue(playerShips[i][k].charAt(1));
                     y =  Character.getNumericValue(playerShips[i][k].charAt(4));
-
                    panelGrid.setColor(Color.black);        
                    panelGrid.fillRect(y*UNIT_SIZE,x*UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
                }
               }
             }
     }
-  
-
-    }
-
-   /**
-    * Method helped me to build the game with a grid printed on the cosole
-    */
-    public void updateBoardTest(String player, int x, int y){
-        if(player == "puta"){
-            for(int i=0;i< grid.length;i++){
-                for(int j=0;j< grid.length;j++){
-                       grid[i][j] =  Integer.toString(j);
-                    if(grid[i][j] == grid[x][y]) {        
-                        grid[i][j] = "W";
-                    }else if(grid[i][j] == grid[0][0]){
-                        grid[i][j] = " ";
-                    }
-                    else if(grid[i][j] == grid[i][0]){
-                        grid[i][j] = Integer.toString(i);
-                    }else if(grid[i][j] == grid[0][j] ){
-                        grid[i][j] = Integer.toString(j);
-                    }else{
-                        grid[i][j] = "-";
-                    }
-                    System.out.print(grid[i][j]) ; 
-                    System.out.print(" ") ; 
-                //}
-                    
-                }
-                System.out.println(" ") ; 
-                 
-           }
-   }
 
     }
 }
