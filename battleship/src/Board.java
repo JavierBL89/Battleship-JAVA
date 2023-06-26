@@ -40,8 +40,8 @@ public class Board extends JPanel {
 
         Graphics panelGrid = g.create();
         // Grab the player ships arrays from the Battleship class to draw them
-        String[][] compuShips = Battleship.compuShips;
-        String[][] playerShips = Battleship.playerShips;
+        String[][] compuShips = Game.compuShips;
+        String[][] playerShips = Game.playerShips;
         
         // Draws a grid for both boards(panels)
         for(int i = 0; i < gameGrid.length;i++){
