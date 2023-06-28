@@ -9,19 +9,21 @@ public class Game {
     public static String[][] compuShips;
     public static String[][] playerShips;
     // Array to store the random ship coordenates
-    String[] startCordenates = new String[2];
+    String[] startCordenates;
     String[] direction = {"down", "right"};
-
-
     String x;
     String y;
-    String playerName;
+    static String playerName;
+    static String playerTurn;
     int shipLength = 2;
     String randomDirection;
+    static boolean running = false;
     
     Game (){
         compuShips = new String[3][3];
         playerShips = new String[3][3];
+        startCordenates = new String[2];
+        playerTurn = "Player";
          x = " ";
          y = " ";
          playerName = " ";
@@ -29,6 +31,14 @@ public class Game {
          randomDirection = " ";
     }
     
+    public void startGame(){
+        GameFrame gframe = new GameFrame();
+         running = true;
+         //takeTurn();
+      // DELAY dictates how fast the game runs, 
+      // and we pass in "this" because we're using the action listener interface
+        
+    }
     /**
      * Sets player ships array
      */
@@ -133,13 +143,63 @@ public class Game {
 
         }
         
-    public static void takeTurn(String userInput){
-        String[] userGuess = new String[2];
-       // userGuess = textField.getText().trim();
-        userGuess[0] = userInput.substring(0, 1);
-        userGuess[1] = userInput.substring(2, 3);
-        System.out.print(userGuess[0] + " " +userGuess[1]);
+    public static void takeTurn( String userInput){
 
+        // boolean puta = true;
+        // while(puta){}
+        if(playerTurn == "Player"){
+            checkGuess("Player", userInput);
+           playerTurn = "Compu";
+           generateShot();
+        }else{
+
+        }
+    }
+    
+    static void generateShot(){
+        String compuGuess = " ";
+        String guessX = " ";
+        String guessY = " ";
+        Random random = new Random();
+        guessX = Integer.toString(random.nextInt(9));
+        guessY = Integer.toString(random.nextInt(9));
+        compuGuess = guessX + "," + guessY;
+        checkGuess("Compu", compuGuess);
+        playerTurn = "Player";
+    }
+
+    static public void checkGuess(String playerName, String shot){
+        String[] playerGuess = new String[2];
+        // String[][] ships = playerName == "Player" ? compuShips : playerShips;
+        String[][] ships = new String[3][3];
+        if(playerName == "Player"){
+            ships = compuShips;
+         }else{
+         ships = playerShips;
+         }
+        
+        playerGuess[0] = shot.substring(0, 1);
+        playerGuess[1] = shot.substring(2, 3);
+                System.out.println("guess " + Arrays.toString( playerGuess) + playerName);
+
+        for(int i=0;i<ships.length;i++){
+            //System.out.println(ships.length);
+            for(int j=0;j <ships[i].length +1;j++){
+                for(int h=0;h<ships[j].length;h++){
+                   
+                //    if(i==1){
+                //     System.out.println(ships[j][h]);
+                //    }
+                   if(ships[j][h].equalsIgnoreCase(Arrays.toString(playerGuess))){
+                       System.out.println(playerName + " hit");
+                   }else{
+                       System.out.println(playerName +" missed");
+
+                    }
+                }
+            }
+
+        }
     }
     
     public static void main(String[] args) throws Exception {
@@ -147,11 +207,11 @@ public class Game {
         // createShips.setPlayerShips("Compu");
         // createShips.setPlayerShips("Player");
         
-        Game game = new Game();
+         Game game = new Game();
          game.setPlayerShips("Compu");
          game.setPlayerShips("Player");
-         
-        GameFrame gframe = new GameFrame();
+         game.startGame();
+
 
         
         Board b;

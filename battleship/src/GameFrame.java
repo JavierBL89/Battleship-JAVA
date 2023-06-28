@@ -86,7 +86,7 @@ public class GameFrame extends JFrame implements ActionListener{
         public void keyPressed(KeyEvent e) {
             String userGuess;
             if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                userGuess = textField.getText();
+                userGuess = textField.getText().replaceAll(" ", "");
                // System.out.print(userGuess);
                 Game.takeTurn(userGuess);
             }
